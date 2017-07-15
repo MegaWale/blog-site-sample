@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-	STATUS_CHIOCES = (
+	STATUS_CHOICES = (
 		('draft', 'Draft'),
 		('published', 'Published'),
 		)
-	title = models.Charfield(max_length=250)
+	title = models.CharField(max_length=250)
 	slug = models.SlugField(max_length=250,
 							unique_for_date='publish')
 	author = models.ForeignKey(User,
@@ -18,8 +18,8 @@ class Post(models.Model):
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	status = models.Charfield(max_length=10,
-								chioce=STATUS_CHIOCES,
+	status = models.CharField(max_length=10,
+								choices=STATUS_CHOICES,
 								default='draft')
 	
 	class meta:
