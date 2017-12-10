@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settinigs for sitemap
+SITE_ID = 1
 
 # Application definition
 
@@ -37,8 +39,18 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # for sitemap,
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
+    #third partu apps
+    'taggit',
+    'haystack',
+
     # Custom Apps
     'blog',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,6 +95,13 @@ DATABASES = {
     }
 }
 
+# Haystack connection setttings
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -97,6 +116,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+# This is using gmail to serve and send emails if you
+# don't have a local SMTP server.
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMIAL_HOST_USER = 'olaclassik@gmail.com'
+EMAIL_HOST_PASSWORD = 'dianaplast1993'
+EMAIL_USE_TLS = True
+#EMAIL_USE_TLS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
